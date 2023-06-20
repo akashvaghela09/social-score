@@ -79,6 +79,7 @@ contract Community {
     EventApplication[] public applicationList;
 
     ISocialScore private socialScore;
+    int256 public spendAmount = 5;
 
     constructor(address _socialScoreAddress) {
         socialScore = ISocialScore(_socialScoreAddress);
@@ -141,14 +142,9 @@ contract Community {
         }
     }
 
-    function updateCommunityScore(
-        uint256 _id,
-        address _address,
-        int256 _points
-    ) public {
-        memberList[_id][_address].communityScore += _points;
-
-        socialScore.updateSocialScore(_address, _points);
+    function updateCommunityScore(uint256 _id, address _address) public {
+        memberList[_id][_address].communityScore += spendAmount;
+        socialScore.updateSocialScore(_address, spendAmount);
     }
 
     function createEvent(
@@ -168,14 +164,10 @@ contract Community {
         nextEventId++;
     }
 
-    function updateEventScore(
-        uint256 _eventId,
-        address _address,
-        int256 _points
-    ) public {
-        eventMemberList[_eventId][_address].eventScore += _points;
+    function updateEventScore(uint256 _eventId, address _address) public {
+        eventMemberList[_eventId][_address].eventScore += spendAmount;
         uint256 communityId = eventList[_eventId].communityId;
-        updateCommunityScore(communityId, _address, _points);
+        updateCommunityScore(communityId, _address);
     }
 
     function applyForEvent(uint256 _eventId) public returns (uint256) {
