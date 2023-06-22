@@ -8,7 +8,9 @@
 
 pragma solidity >=0.8.0 <0.9.0;
 
-import "./ISocialScore.sol";
+interface ISocialScore {
+    function updateSocialScore(address _address, int256 _points) external;
+}
 
 /**
  * @title Community
