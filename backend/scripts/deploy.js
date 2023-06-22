@@ -7,21 +7,24 @@
 const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const [deployer] = await ethers.getSigners();
+  console.log("\nDeploying contracts with the account:", deployer.address);
 
-  const lockedAmount = hre.ethers.utils.parseEther("0.001");
+  const SSToken = await ethers.getContractFactory("SSToken");
+  const SocialScore = await ethers.getContractFactory("SocialScore");
+  const Community = await ethers.getContractFactory("Community");
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  const ssToken = await SSToken.deploy();
+  await ssToken.deployed();
+  console.log("\nSuccess! ssToken \ndeployed to:", ssToken.address);
 
-  await lock.deployed();
+  const socialScore = await SocialScore.deploy(ssToken.address);
+  await socialScore.deployed();
+  console.log("\nSuccess! socialScore \ndeployed to:", socialScore.address);
 
-  console.log(
-    `Lock with ${ethers.utils.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  );
+  const community = await Community.deploy(socialScore.address);
+  await community.deployed();
+  console.log("\nSuccess! community \ndeployed to:", community.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
