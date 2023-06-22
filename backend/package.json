@@ -3,5 +3,26 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "hardhat": "^2.15.0"
+  },
+  "version": "1.0.0",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "deploy-local": "npx hardhat --network localhost run scripts/deploy.js",
+    "deploy-mumbai": "npx hardhat --network mumbai run scripts/deploy.js",
+    "deploy-sepolia": "npx hardhat --network sepolia run scripts/deploy.js",
+    "verify-mumbai": "npx hardhat verify --network mumbai --contract contracts/CrowdFunding.sol:CrowdFunding 0x352CfCce7e597eC550990e888aA738fa2149fceA",
+    "verify-sepolia": "npx hardhat verify --network sepolia --contract contracts/CrowdFunding.sol:CrowdFunding 0x352CfCce7e597eC550990e888aA738fa2149fceA"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.2",
+    "chai": "^4.3.7",
+    "dotenv": "^16.3.1"
   }
 }
