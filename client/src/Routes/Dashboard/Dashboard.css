@@ -1,0 +1,70 @@
+.dashboard_wrapper {
+    flex-grow: 1;
+    background-color: rgb(218, 218, 218);
+    display: flex;
+}
+
+.dashboard_sidepanel {
+    width: 20%;
+    background-color: rgb(197, 207, 216);
+}
+
+.subpage_title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.subpage_title:hover {
+    background-color: rgb(225, 225, 225);
+}
+
+.dashboard_content_area_wrapper {
+    width: 80%;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    flex-direction: column;
+} 
+
+.content_area {
+    /* flex-grow: 1; */
+    margin: 50px;
+    border-radius: 13px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.section_divider {
+    font-size: 16px;
+    margin: 0px 20px;
+    padding: 10px;
+    background-color: rgb(117, 174, 245);
+}
+
+.badge_section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.badge_card {
+    width: 160px;
+    height: 160px;
+    margin: 10px;
+    background-color: azure;
+    border-radius: 8px;
+    text-align: left;
+    padding: 20px;
+}
+
+.info_section {
+    text-align: left;
+}
