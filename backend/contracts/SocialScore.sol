@@ -29,7 +29,7 @@ contract SocialScore {
     }
 
     // user next id
-    uint256 internal nextId;
+    uint256 public nextId;
 
     // user address => user struct
     mapping(address => User) public users;
